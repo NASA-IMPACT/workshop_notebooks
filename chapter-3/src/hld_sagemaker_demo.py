@@ -82,7 +82,7 @@ class UnetGenerator(tf.keras.utils.Sequence):
         self.data_path = data_path
         self.tif_list = []
         self.mask_list = []
-        for filename in glob(f'{data_path}*.tif*'):
+        for filename in glob(f'{data_path}/*.tif*'):
             self.tif_list.append(filename)
 
         self.to_fit = to_fit
@@ -93,6 +93,7 @@ class UnetGenerator(tf.keras.utils.Sequence):
         self.shuffle = shuffle
         self.n = 0
         self.max = self.__len__()
+        print(self.max, self.n, self.data_path)
         self.on_epoch_end()
 
     def __len__(self):
@@ -420,9 +421,9 @@ if __name__ =='__main__':
 #     download_data(args.train, 'train')
 #     download_data(args.eval, 'eval')
 #     download_data(args.test, 'test')
-    print(args.train)
-    train_generator = UnetGenerator(args.train, batch_size=4)
-    val_generator = UnetGenerator(args.eval, batch_size=4)
+    batch_size = 4
+    train_generator = UnetGenerator(args.train, batch_size=batch_size)
+    val_generator = UnetGenerator(args.eval, batch_size=batch_size)
 
     # ### training the model with the generators
     # 'steps_per_epoch' defines the number of times the generator should be called for each epoch. this number is the number of input samples (54) divided by the batch_size (4) ~= 13. similrly, validation_step is num of images in validation split (38) divided by batch_size ~= 10
@@ -456,12 +457,13 @@ if __name__ =='__main__':
         loss='binary_crossentropy',
         metrics=["accuracy"]
     )
-
-    model.fit_generator(
+    print("length: ", len(glob(f"{args.train}/*.tif*"))//batch_size)
+    print("val length: ", len(glob(f"{args.eval}/*.tif*"))//batch_size)
+    model.fit(
         train_generator,
         epochs=args.epochs,
-        steps_per_epoch=13,
+        steps_per_epoch=len(glob(f"{args.train}/*.tif*"))//batch_size,
         validation_data=val_generator,
         callbacks=callbacks,
-        validation_steps=10,
+        validation_steps=len(glob(f"{args.eval}/*.tif*"))//batch_size,
     )
