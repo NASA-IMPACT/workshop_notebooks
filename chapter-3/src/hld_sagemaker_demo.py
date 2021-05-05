@@ -364,15 +364,16 @@ def parse_args():
     parser = argparse.ArgumentParser()
 
     # hyperparameters sent by the client are passed as command-line arguments to the script.
-    parser.add_argument('--epochs', type=int, default=10)
+    parser.add_argument('--epochs', type=int, default=1)
     parser.add_argument('--batch_size', type=int, default=10)
     parser.add_argument('--learning_rate', type=float, default=0.001)
 
     # input data and model directories
-    parser.add_argument('--model_dir', type=str)
+    parser.add_argument('--model_dir', type=str, default='/opt/ml/model')
     parser.add_argument('--train', type=str, default=os.environ.get('SM_CHANNEL_TRAIN'))
     parser.add_argument('--test', type=str, default=os.environ.get('SM_CHANNEL_TEST'))
     parser.add_argument('--eval', type=str, default=os.environ.get('SM_CHANNEL_EVAL'))
+    parser.add_argument('--version', type=str, default='1')
     return parser.parse_known_args()
 
 
@@ -411,17 +412,12 @@ def download_data(data, split):
 
 if __name__ =='__main__':
     args, _ = parse_args()
-
+    
     # ... load from args.train and args.test, train a model, write model to args.model_dir.
 
     # ### loading the dataset into generator
     # since we have two splits (train, val), we create two generators: one for train, and one for validation split.
-
-    # prepare data from s3
-#     download_data(args.train, 'train')
-#     download_data(args.eval, 'eval')
-#     download_data(args.test, 'test')
-    batch_size = 4
+    batch_size = args.batch_size
     train_generator = UnetGenerator(args.train, batch_size=batch_size)
     val_generator = UnetGenerator(args.eval, batch_size=batch_size)
 
@@ -457,13 +453,22 @@ if __name__ =='__main__':
         loss='binary_crossentropy',
         metrics=["accuracy"]
     )
-    print("length: ", len(glob(f"{args.train}/*.tif*"))//batch_size)
-    print("val length: ", len(glob(f"{args.eval}/*.tif*"))//batch_size)
-    model.fit(
-        train_generator,
-        epochs=args.epochs,
-        steps_per_epoch=len(glob(f"{args.train}/*.tif*"))//batch_size,
-        validation_data=val_generator,
-        callbacks=callbacks,
-        validation_steps=len(glob(f"{args.eval}/*.tif*"))//batch_size,
-    )
+
+#     model.fit(
+#         train_generator,
+#         epochs=args.epochs,
+#         steps_per_epoch=len(glob(f"{args.train}/*.tif*"))//batch_size,
+#         validation_data=val_generator,
+#         callbacks=callbacks,
+#         validation_steps=len(glob(f"{args.eval}/*.tif*"))//batch_size,
+#     )
+    
+#     tf.saved_model.save(
+#         model,
+#         os.path.join(args.model_dir, f"model/{args.version}"),
+#         inputs={'inputs': model.input},
+#         outputs={t.name: t for t in model.outputs}
+#     )
+    print(os.path.join(args.model_dir, args.version))
+    tf.saved_model.save(model, "/opt/ml/model/1")
+    
