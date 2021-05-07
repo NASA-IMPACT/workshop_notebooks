@@ -1,4 +1,4 @@
-# Chapter-3:
+# Chapter-3: Train model using SageMaker
 The objectives you complete during the course of this chapter introduce you to the process of implementing the SageMaker model training tool. You will engage in this process by completing the following objectives:
 Create a neural network to detect high latitude dust events by reviewing and executing the HLD SageMaker codebase.
 Implement  the attributes required by the HLD SageMaker codebase.
