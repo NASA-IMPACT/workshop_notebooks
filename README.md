@@ -7,4 +7,4 @@ The goal of the workshop is to familiarize you with the ImageLabeler and AWS Sag
 4. Chapter-3: Train model using SageMaker
 5. Chapter-4: Deploy model and Infer Predictions
 
-Threre are readme files for each of these chapters that give an overview of the contents in the chapter. Each chapter has a `.ipynb` jupyter notebook file that walks through the process and the codebase, enabling you to set up a cloud based End-to-end pipeline for training and deploying ML models, one chapter at a time.
+Threre are readme files for each of these chapters that gives an overview of the contents in the chapter. Each chapter has a `.ipynb` jupyter notebook file that walks through the process and the codebase, enabling you to set up a cloud based End-to-end pipeline for training and deploying ML models, one chapter at a time.
