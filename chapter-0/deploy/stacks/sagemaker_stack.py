@@ -54,5 +54,5 @@ class SageMakerStack(core.Stack):
             role_arn=role.role_arn,
             direct_internet_access='Enabled',
             root_access='Enabled',
-            default_code_repository="https://github.com/muthukumaranR/workshop_notebooks"
+            default_code_repository="https://github.com/NASA-IMPACT/workshop_notebooks"
         )
