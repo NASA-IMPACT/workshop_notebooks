@@ -39,6 +39,7 @@ from tensorflow.keras.models import Model, load_model
 from tensorflow.keras.callbacks import (
     EarlyStopping,
     ModelCheckpoint,
+    TensorBoard,
 )
 
 from tensorflow.keras.layers import (
@@ -326,6 +327,10 @@ def build_model():
 
 
 class PlotLearning(tf.keras.callbacks.Callback):
+    def __init__(self, save_path):
+        self.save_path = save_path
+        super().__init__()
+
     def on_train_begin(self, logs={}):
         self.i = 0
         self.x = []
@@ -357,7 +362,7 @@ class PlotLearning(tf.keras.callbacks.Callback):
         ax2.plot(self.x, self.val_acc, label="validation accuracy")
         ax2.legend()
 
-        plt.show();
+        plt.save(self.save_path)
 
 
 def parse_args():
@@ -374,6 +379,7 @@ def parse_args():
     parser.add_argument('--test', type=str, default=os.environ.get('SM_CHANNEL_TEST'))
     parser.add_argument('--eval', type=str, default=os.environ.get('SM_CHANNEL_EVAL'))
     parser.add_argument('--version', type=str, default='1')
+    parser.add_argument('--log_dir', type=str, default='default_log')
     return parser.parse_known_args()
 
 
@@ -412,7 +418,7 @@ def download_data(data, split):
 
 if __name__ =='__main__':
     args, _ = parse_args()
-    
+
     # ... load from args.train and args.test, train a model, write model to args.model_dir.
 
     # ### loading the dataset into generator
@@ -431,12 +437,13 @@ if __name__ =='__main__':
 
     # ### Creating callbacks
     # Callbacks are pieces of code that get executed every time the model trains through one pass of all available input images. This is particularly useful functionality provided by keras to do various tasks such as stopping training if the model does not improve significantly, saving the weights of the best model only, and plotting training graph to better understand how the model learns in training phase.
-    plot_learning = PlotLearning()
+    plot_learning = PlotLearning(args.log_dir.replace('.log','.png'))
     callbacks = [
         EarlyStopping(monitor="val_loss", patience=20,
                       verbose=1, mode="auto"),
         ModelCheckpoint(filepath=args.model_dir,
                         verbose=1, save_best_only=True),
+        TensorBoard(log_dir=args.log_dir, update_freq="epoch"),
         plot_learning,
     ]
 
@@ -454,21 +461,21 @@ if __name__ =='__main__':
         metrics=["accuracy"]
     )
 
-#     model.fit(
-#         train_generator,
-#         epochs=args.epochs,
-#         steps_per_epoch=len(glob(f"{args.train}/*.tif*"))//batch_size,
-#         validation_data=val_generator,
-#         callbacks=callbacks,
-#         validation_steps=len(glob(f"{args.eval}/*.tif*"))//batch_size,
-#     )
-    
-#     tf.saved_model.save(
-#         model,
-#         os.path.join(args.model_dir, f"model/{args.version}"),
-#         inputs={'inputs': model.input},
-#         outputs={t.name: t for t in model.outputs}
-#     )
+    model.fit(
+        train_generator,
+        epochs=args.epochs,
+        steps_per_epoch=len(glob(f"{args.train}/*.tif*"))//batch_size,
+        validation_data=val_generator,
+        callbacks=callbacks,
+        validation_steps=len(glob(f"{args.eval}/*.tif*"))//batch_size,
+    )
+
+    tf.saved_model.save(
+        model,
+        os.path.join(args.model_dir, f"model/{args.version}"),
+        inputs={'inputs': model.input},
+        outputs={t.name: t for t in model.outputs}
+    )
     print(os.path.join(args.model_dir, args.version))
     tf.saved_model.save(model, "/opt/ml/model/1")
-    
+
