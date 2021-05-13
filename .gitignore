@@ -5,3 +5,5 @@
 chapter-0/deploy/cdk.out/*
 chapter-0/deploy/cdk.out
 *.pyc
+data/*
+data
