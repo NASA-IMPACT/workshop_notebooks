@@ -369,7 +369,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
 
     # hyperparameters sent by the client are passed as command-line arguments to the script.
-    parser.add_argument('--epochs', type=int, default=1)
+    parser.add_argument('--epochs', type=int, default=5)
     parser.add_argument('--batch_size', type=int, default=10)
     parser.add_argument('--learning_rate', type=float, default=0.001)
 
@@ -437,14 +437,14 @@ if __name__ =='__main__':
 
     # ### Creating callbacks
     # Callbacks are pieces of code that get executed every time the model trains through one pass of all available input images. This is particularly useful functionality provided by keras to do various tasks such as stopping training if the model does not improve significantly, saving the weights of the best model only, and plotting training graph to better understand how the model learns in training phase.
-    plot_learning = PlotLearning(args.log_dir.replace('.log','.png'))
+    # plot_learning = PlotLearning(args.log_dir.replace('.log','.png'))
+
     callbacks = [
         EarlyStopping(monitor="val_loss", patience=20,
                       verbose=1, mode="auto"),
         ModelCheckpoint(filepath=args.model_dir,
                         verbose=1, save_best_only=True),
-        TensorBoard(log_dir=args.log_dir, update_freq="epoch"),
-        plot_learning,
+        TensorBoard(log_dir=args.log_dir, update_freq="epoch")
     ]
 
     model = build_model()
@@ -470,12 +470,5 @@ if __name__ =='__main__':
         validation_steps=len(glob(f"{args.eval}/*.tif*"))//batch_size,
     )
 
-    tf.saved_model.save(
-        model,
-        os.path.join(args.model_dir, f"model/{args.version}"),
-        inputs={'inputs': model.input},
-        outputs={t.name: t for t in model.outputs}
-    )
     print(os.path.join(args.model_dir, args.version))
     tf.saved_model.save(model, "/opt/ml/model/1")
-
