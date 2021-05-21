@@ -40,6 +40,10 @@ class IamStack(core.Stack):
                     actions = [
                         "iam:GetRole",
                         "iam:PassRole",
+                        "s3:ListBucket",
+                        "s3:PutObject",
+                        "s3:GetObject",
+                        "s3:DeleteObject",
                         "sts:GetSessionToken",
                         "sts:GetAccessKeyInfo",
                         "sts:GetCallerIdentity",
