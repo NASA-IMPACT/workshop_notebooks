@@ -1,4 +1,4 @@
-# End-to-end ML Using ImageLabeler and AWS SageMaker
+# End-to-end ML using ImageLabeler and AWS SageMaker
 The goal of the workshop is to familiarize you with the ImageLabeler and AWS SageMaker tool sets. In the process of completing this workshop you will have built an end-to-end machine learning (ML) solution: one that lets you label your own Earth science phenomena, as well as preprocess, train and deploy ML models within the confines of Jupyter notebooks.
 
 ## ImageLabeler
@@ -8,7 +8,7 @@ Additional features include: extraction of images from satellite imagery, drawin
 ## Amazon Web Services (AWS) SageMaker
 Amazon SageMaker helps data scientists and developers to prepare, build, train, and deploy high-quality ML models quickly by bringing together a broad set of capabilities purpose-built for ML. Simply put, it is a set of cloud-based (specifically, AWS) apps that focus on labeling, training, testing, and deploying models. Among other things, It provides access to provisioned Jupyter notebooks to train models and easily accessible model deployment.
 
-## Overall Workflow
+## Overall workflow
 1. Deploy a SageMaker instance using cdk. This process uses AWS Python CDK to deploy AWS services (Role, SageMaker instance) within the familiarity of Python.
 2. Label Earth science phenomena using ImageLabeler. We will be using an example of high-latitude dust for demonstration purposes.
 3. Get labeled data within SageMaker's Jupyter notebook instance and preprocess it for ML use.
