@@ -42,7 +42,7 @@ Once we have defined a stack, we can populate it with resources by instantiating
 
 For example, in line 11 of ``deploy/stacks/iam_stack.py``, a `aws_iam.Role` construct is instantiated with a role name and the service that needs to assume this role.
 
-To define the stacks within the scope of an application, we use the App construct, as shown in `deploy/app.py`. This file instantiates the defined stacks within the scope of the application, and links them together in one context. Once all the stacks are linked to the app, `app.synth()` is called to synthesize a cloud assembly.
+To define the stacks within the scope of an application, we use the App construct, as shown in `deploy/app.py`. This file instantiates the defined stacks within the scope of the application and links them together in one context. Once all the stacks are linked to the app, `app.synth()` is called to synthesize a cloud assembly.
 
 Furthermore, the AWS CDK Toolkit needs to know how to execute the AWS CDK app. For Python, we create a `cdk.json` file that includes the necessesary command for the CDK to initialiize the app.
 
