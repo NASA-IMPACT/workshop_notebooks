@@ -4,7 +4,7 @@ The objectives you complete during the course of this chapter introduce you to t
 2) implement the attributes required by the HLD SageMaker codebase; and
 3) review and execute the code needed to set up the HLD SageMaker.
 
-As with chapter 2, a subset of high latitude dust data is pre-prepared and uploaded into an S3 bucket (impact-datashare). The details can be found here. Once again, the code contains details on the necessary import elements and specifies which variables need to be assigned predetermined values. Note that if the shapefile generation was not done in Aqua, TrueColor, the image_url function must be used to create a valid url.
+As with chapter 2, a subset of high latitude dust data is pre-prepared and uploaded into a S3 bucket (impact-datashare). The details can be found here. Once again, the code contains details on the necessary import elements and specifies which variables need to be assigned predetermined values. Note that if the shapefile generation was not done in Aqua, TrueColor, the image_url function must be used to create a valid url.
 
 The code again assumes the notebookAccessRole role that was created using the Amazon Web Services Cloud Development Kit (AWS CDK). Note the specific constant variables that are required for this process as well as the specific values returned.
 
