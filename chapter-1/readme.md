@@ -1,4 +1,4 @@
-# Chapter-1: Demonstrate the usage of ImageLabeler to create Labels
+# Chapter-1: Demonstrate the usage of ImageLabeler to create labels
 
 When you complete this chapter, you will have received hands-on experience using the ImageLabeler tool. As you work your way through chapter, you will accomplish the following objectives:
 - Create an account in the ImageLabeler tool.
