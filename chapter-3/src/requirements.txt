@@ -9,4 +9,4 @@ rasterio
 requests
 sklearn
 tensorflow==2.4.1
-tensorboard<2.5
+tensorboard<2.4
