@@ -2,8 +2,10 @@
 The AWS Cloud Development Kit (AWS CDK) is a framework that lets users define and provision AWS cloud resources using languages like Python, Java, etc.
 
 This module (chapter-0) familiarizes users with the AWS CDK by deploying a SageMaker instance using the AWS CDK.
+## Step 1: Redeem your aws credits
+You will be provided aws credits required for running the services that are used in this course. Please reach out to instructors over slack for your personal credits code.
 
-## Step 1: Configure AWS command-line interface (CLI) on your machine
+## Step 2: Configure AWS command-line interface (CLI) on your machine
 
 Install the AWS CLI using steps shown [here](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html).
 
@@ -12,9 +14,9 @@ Configure AWS with your credentials and region:
 ```
 aws configure
 ```
-Provide access key ID, secret access key, and the region information.
+Provide access key ID, secret access key, and the region information (default: `us-east-1`) provided to you by the instructors.
 
-## Step 2: Install AWS CDK
+## Step 3: Install AWS CDK
 
 Install the AWS CDK Toolkit using npm.
 ```
@@ -36,7 +38,7 @@ Install required AWS CDK packages in requirements.txt:
 pip install -r requirements.txt
 ```
 
-## Step 3: Deploy the AWS CDK stack
+## Step 4: Deploy the AWS CDK stack
 AWS CDK apps are composed of building blocks known as constructs, which are composed together to form stacks and apps.
 Stacks in AWS CDK apps extend the Stack base class, as shown in ``deploy/stacks/iam_stack.py``. This is a common pattern when creating a stack within your AWS CDK app: a) extend the Stack class, b) define a constructor that accepts scope, id, and props, and c) invoke the base class constructor via super with the received scope, id, and props. (from https://docs.aws.amazon.com/cdk/latest/guide/constructs.html)
 
