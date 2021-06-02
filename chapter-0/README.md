@@ -1,4 +1,5 @@
-# Creating a SageMaker Instance with AWS Cloud Development Kit
+# IEEE-GRSS Summer School on Scaling Machine Learning for Remote Sensing using Cloud Computing Environment
+### Using  Imagelabeler labeling tool and AWS Sagemaker
 The AWS Cloud Development Kit (AWS CDK) is a framework that lets users define and provision AWS cloud resources using languages like Python, Java, etc.
 
 This module (chapter-0) familiarizes users with the AWS CDK by deploying a SageMaker instance using the AWS CDK.
