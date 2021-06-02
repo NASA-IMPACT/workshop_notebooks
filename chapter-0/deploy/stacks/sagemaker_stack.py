@@ -1,5 +1,5 @@
 from aws_cdk import core
-from aws_cdk import (aws_ec2 as ec2, aws_sagemaker as sm, aws_efs as efs, aws_iam as iam_)
+from aws_cdk import (aws_ec2 as ec2, aws_sagemaker as sm, aws_iam as iam_)
 from glob import glob
 
 
@@ -21,26 +21,6 @@ class SageMakerStack(core.Stack):
             "WorkshopGroup",
             vpc=vpc
         )
-
-        # Create EFS inside VPC
-        # self.efs = efs.FileSystem(
-        #     self,
-        #     "commonEFS4Notebooks",
-        #     vpc = vpc,
-        #     encrypted=True,
-        #     enable_automatic_backups=True,
-        #     performance_mode=efs.PerformanceMode('MAX_IO'),
-        #     throughput_mode=efs.ThroughputMode('BURSTING'),
-        #     security_group = self.security_group
-        # )
-
-        # lifecycleconfig = sm.CfnNotebookInstanceLifecycleConfig(
-        #     self,
-        #     "LifeCycleConfig",
-        #     notebook_instance_lifecycle_config_name="LifeCycleConfig",
-        #     on_create=None,
-        #     on_start=code
-        # )
 
         instance_id = "Workshop"
         sm.CfnNotebookInstance(

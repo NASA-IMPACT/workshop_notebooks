@@ -23,9 +23,11 @@ npm install -g aws-cdk
 
 Install required Python 3.6+, pip, and virtualenv packages. Activate the virtualenv:
 ```
-python -m ensurepip --upgrade
-python -m pip install --upgrade pip
-python -m pip install --upgrade virtualenv
+cd chapter-0/
+python3 -m ensurepip --upgrade
+python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade virtualenv
+python3 -m venv .venv
 source .venv/bin/activate
 ```
 
