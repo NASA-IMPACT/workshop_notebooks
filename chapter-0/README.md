@@ -57,7 +57,7 @@ Furthermore, the AWS CDK Toolkit needs to know how to execute the AWS CDK app. F
 cdk.json:
 ```
 {
-    "app": "python app.py"
+    "app": "python deploy/app.py"
 }
 ```
 Finally, the CDK pipeline can be deployed using the following command:
