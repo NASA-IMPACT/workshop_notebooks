@@ -3,6 +3,7 @@
 The AWS Cloud Development Kit (AWS CDK) is a framework that lets users define and provision AWS cloud resources using languages like Python, Java, etc.
 
 This module (chapter-0) familiarizes users with the AWS CDK by deploying a SageMaker instance using the AWS CDK.
+
 ## Step 1: Redeem your aws credits
 You will be provided aws credits required for running the services that are used in this course. Please reach out to instructors over slack for your personal credits code.
 
@@ -17,14 +18,16 @@ aws configure
 ```
 Provide access key ID, secret access key, and the region information (default: `us-east-1`) provided to you by the instructors.
 
-## Step 3: Install AWS CDK
+## Step 3: Install AWS
 
-Install the AWS CDK Toolkit using npm.
+First install [node + npm](https://nodejs.org/en/). 
+
+Then install the AWS CDK Toolkit using npm.
 ```
 npm install -g aws-cdk
 ```
 
-Install required Python 3.6+, pip, and virtualenv packages. Activate the virtualenv:
+Install required [Python 3.6+](https://www.python.org/downloads/) and [virtualenv packages](https://virtualenv.pypa.io/en/latest/installation.html#via-pip). Activate the virtualenv:
 ```
 cd chapter-0/
 python3 -m ensurepip --upgrade
