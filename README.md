@@ -1,11 +1,12 @@
-# End-to-end ML using ImageLabeler and AWS SageMaker
+# IEEE-GRSS Summer School on Scaling Machine Learning for Remote Sensing using Cloud Computing Environment
+## An End-to-end ML workflow using ImageLabeler and AWS SageMaker
 The goal of the workshop is to familiarize you with the ImageLabeler and AWS SageMaker tool sets. In the process of completing this workshop you will have built an end-to-end machine learning (ML) solution: one that lets you label your own Earth science phenomena, as well as preprocess, train and deploy ML models within the confines of Jupyter notebooks.
 
-## ImageLabeler
+### ImageLabeler
 [ImageLabeler](https://impact.earthdata.nasa.gov/labeler/) facilitates the creation and management of labeled Earth science images for use in machine learning models. Using ImageLabeler, you can label images to indicate the presence or absence of a target Earth science phenomena.
 Additional features include: extraction of images from satellite imagery, drawing bounding boxes, and assigning teams for labeling.
 
-## Amazon Web Services (AWS) SageMaker
+### Amazon Web Services (AWS) SageMaker
 Amazon SageMaker helps data scientists and developers to prepare, build, train, and deploy high-quality ML models quickly by bringing together a broad set of capabilities purpose-built for ML. Simply put, it is a set of cloud-based (specifically, AWS) apps that focus on labeling, training, testing, and deploying models. Among other things, It provides access to provisioned Jupyter notebooks to train models and easily accessible model deployment.
 
 ## Overall workflow
