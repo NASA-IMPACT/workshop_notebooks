@@ -5,7 +5,7 @@ The AWS Cloud Development Kit (AWS CDK) is a framework that lets users define an
 This module (chapter-0) familiarizes users with the AWS CDK by deploying a SageMaker instance using the AWS CDK.
 
 ## Step 1: Redeem your aws credits
-You will be provided aws credits required for running the services that are used in this course. Please reach out to instructors over slack for your personal credits code.
+You will be provided [AWS credits](https://aws.amazon.com/awscredits/) required for running the services that are used in this course. Please reach out to instructors over slack for your personal credits code.
 
 ## Step 2: Configure AWS command-line interface (CLI) on your machine
 
