@@ -369,9 +369,9 @@ def parse_args():
     parser = argparse.ArgumentParser()
 
     # hyperparameters sent by the client are passed as command-line arguments to the script.
-    parser.add_argument('--epochs', type=int, default=5)
-    parser.add_argument('--batch_size', type=int, default=10)
-    parser.add_argument('--learning_rate', type=float, default=0.001)
+    parser.add_argument('--epochs', type=int, default=30)
+    parser.add_argument('--batch_size', type=int, default=20)
+    parser.add_argument('--learning_rate', type=float, default=0.01)
 
     # input data and model directories
     parser.add_argument('--model_dir', type=str, default='/opt/ml/model')
@@ -468,6 +468,7 @@ if __name__ =='__main__':
         validation_data=val_generator,
         callbacks=callbacks,
         validation_steps=len(glob(f"{args.eval}/*.tif*"))//batch_size,
+        verbose=2,
     )
 
     print(os.path.join(args.model_dir, args.version))
